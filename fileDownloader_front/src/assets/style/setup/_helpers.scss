@@ -1,0 +1,40 @@
+.flex {
+    display: flex;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.sub-container {
+    display: flex;
+    width: 1300px;
+}
+
+.link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.video-pic-in-list {
+    @include aspect-ratio(100, 80);
+}
+
+.column-layout-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.row-layout-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.display-none {
+    display: none;
+}

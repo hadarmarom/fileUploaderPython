@@ -1,0 +1,11 @@
+// SETUP // 
+@import './setup/variables';
+@import './setup/typograghy';
+@import './setup/functions';
+@import './setup/mixins';
+@import './setup/helpers';
+// // BASICS // 
+@import './basic/base';
+@import './basic/layout';
+// CMPS //
+@import './cmps/file-preview.scss';

@@ -1,0 +1,39 @@
+.main-layout {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    display: grid;
+    width: 100%;
+    height: 100vh;
+    grid-template-columns: 1fr 97vw 1fr;
+    grid-template-rows: 8.4vh 1fr 15.3vh;
+    >* {
+        grid-column: 2;
+    }
+    >.full {
+        grid-column: 1 / -1;
+    }
+}
+
+@include for-wide-layout {
+    .main-layout {
+        grid-template-columns: 1fr 67rem 1fr;
+    }
+}
+
+@include for-normal-layout {
+    .main-layout {
+        grid-template-columns: 1fr 56rem 1fr;
+    }
+}
+
+@include for-narrow-layout {
+    .main-layout {
+        grid-template-columns: 1fr 43rem 1fr;
+    }
+}
+
+@include for-mobile-layout {
+    .main-layout {
+        grid-template-columns: 1fr 98vw 1fr;
+        grid-template-rows: 1fr 72.4vh 1fr;
+    }
+}
