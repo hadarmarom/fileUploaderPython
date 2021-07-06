@@ -41,7 +41,7 @@ def home():
         if request.method == 'POST':
             post_data = request.data # result in bytes
             post_data_str = post_data.decode("utf-8") # result is string
-            startIndex = post_data_str.index('","fileSrc') # 
+            startIndex = post_data_str.index('","fileSrc') 
             fileName = post_data_str[9:startIndex]
             updateStertIdx = startIndex+13
             fileSrc = post_data_str[updateStertIdx:-2]
