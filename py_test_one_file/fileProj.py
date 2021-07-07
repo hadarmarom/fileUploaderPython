@@ -7,6 +7,7 @@ app = Flask(__name__)
 CORS(app)
 
 con = sqlite3.connect('file.db')
+
 # ---------------line to delete the rows------------
 # cur = con.cursor()
 # files = []
