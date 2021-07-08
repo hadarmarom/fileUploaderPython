@@ -23,7 +23,6 @@ con = sqlite3.connect('file.db')
 # con.close()
 # ---------------line to delete the rows------------
 
-
 @app.route("/", methods=['GET', 'POST'])
 def home():
     try:
