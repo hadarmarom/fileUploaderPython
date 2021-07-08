@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <h1>Add File here</h1>
+    <h1>Save & Download Files Here!</h1>
     <div class="btns-containet">
       <label class="file-input-label" for="file">Enter File Here</label>
       <input
@@ -50,6 +50,7 @@ export default {
       .get(this.path)
       .then((res) => {
         var fromDataFiles = res.data;
+        console.log('fromDataFiles:', fromDataFiles)
         if (fromDataFiles) this.files = fromDataFiles;
       })
       .catch((error) => {

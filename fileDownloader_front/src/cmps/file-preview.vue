@@ -7,7 +7,6 @@
 
 <script>
 import axios from "axios";
-
 export default {
   name: "filePreview",
   props: ["file"],
