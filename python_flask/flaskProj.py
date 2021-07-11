@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request
 from flask_cors import CORS
 import json
 import sqlite3
@@ -47,8 +47,6 @@ def home():
             cur.execute(
                 "INSERT INTO files (name, fileSrc) VALUES(?, ?)", (fileName, fileSrc))
             con.commit()
-            results = {'processed': 'true'}
-            return jsonify(results)
         return ("not Post not Get")
     except:
         print("except!!!")
