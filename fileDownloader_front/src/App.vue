@@ -47,19 +47,16 @@ export default {
   methods: {
     previewFiles() {
       this.filesToSave = this.$refs.files.files;
-      console.log("this.filesToSave:", this.filesToSave);
       this.filesToSave.forEach((currFile) => {
-        const reader = new FileReader();
-        reader.readAsDataURL(currFile);
+        const reader = new FileReader(); // using a FileReader Object
+        reader.readAsDataURL(currFile); // which read the contents of files
         reader.onload = (ev) => {
           currFile.fileSrc = ev.target.result;
         };
       });
     },
     async submitFiles() {
-      let formData = new FormData();
-      this.filesToSave.forEach((file, idx) => {
-        formData.append("files[" + idx + "]", file);
+      this.filesToSave.forEach((file) => {
         var modifiedFile = { name: file.name, fileSrc: file.fileSrc };
         axios
           .post(this.path, modifiedFile)
