@@ -2,7 +2,6 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import json
 import sqlite3
-from flask_cors.core import LOG
 app = Flask(__name__)
 CORS(app)
 
@@ -13,7 +12,7 @@ con = sqlite3.connect('file.db')
 # files = []
 # for row in cur.execute("SELECT * FROM files"):
 #     # print(row) # print(row[0], row[1])
-#     cur.execute("DELETE FROM files WHERE name = 'fileName'")
+#     cur.execute("DELETE FROM files WHERE name = 'file-name-here'")
 #     currFile = {
 #         'name': row[0],
 #         'fileSrc': row[1]

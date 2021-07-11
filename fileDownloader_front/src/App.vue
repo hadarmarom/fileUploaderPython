@@ -11,9 +11,8 @@
         @change="previewFiles"
         multiple
       />
-    <button class="submit-btn" @click="submitFiles()">Submit</button>
+      <button class="submit-btn" @click="submitFiles()">Submit</button>
     </div>
-
     <ul class="file-list">
       <div v-if="files.length && !filesToSave.length">
         <div><h1>Saved Files:</h1></div>
@@ -30,76 +29,59 @@
     </ul>
   </div>
 </template>
-
 <script>
 import axios from "axios";
 import filePreview from "./cmps/file-preview.vue";
-
 export default {
   name: "App",
   data() {
     return {
       files: [],
       filesToSave: [],
-      fileSrc: null,
       path: "http://localhost:5000/",
     };
   },
   async created() {
-    axios
-      .get(this.path)
-      .then((res) => {
-        var fromDataFiles = res.data;
-        console.log('fromDataFiles:', fromDataFiles)
-        if (fromDataFiles) this.files = fromDataFiles;
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    this.getFiles();
   },
   methods: {
     previewFiles() {
-      this.filesToSave = [...Object.values(this.$refs.files.files)];
-      const newFiles = this.$refs.files.files;
-      newFiles.forEach((currFile, idx) => {
+      this.filesToSave = this.$refs.files.files;
+      console.log("this.filesToSave:", this.filesToSave);
+      this.filesToSave.forEach((currFile) => {
         const reader = new FileReader();
         reader.readAsDataURL(currFile);
         reader.onload = (ev) => {
-          this.fileSrc = ev.target.result;
-          this.filesToSave[idx].fileSrc = ev.target.result;
+          currFile.fileSrc = ev.target.result;
         };
       });
     },
     async submitFiles() {
       let formData = new FormData();
-      for (var i = 0; i < this.filesToSave.length; i++) {
-        let file = this.filesToSave[i];
-        formData.append("files[" + i + "]", file);
-        this.filesToSave.forEach((file) => {
-          var modifiedFile = {
-            name: file.name,
-            fileSrc: file.fileSrc,
-          };
-          axios
-            .post("http://localhost:5000/", modifiedFile)
-            .then(() => {
-              axios
-                .get(this.path)
-                .then((res) => {
-                  var fromDataFiles = res.data;
-                  if (fromDataFiles) this.files = fromDataFiles;
-                  this.filesToSave = [];
-                })
-                .catch((error) => {
-                  console.error(error);
-                });
-            })
-            .catch((error) => {
-              this.errorMessage = error.message;
-              console.error("There was an error!", error);
-            });
+      this.filesToSave.forEach((file, idx) => {
+        formData.append("files[" + idx + "]", file);
+        var modifiedFile = { name: file.name, fileSrc: file.fileSrc };
+        axios
+          .post(this.path, modifiedFile)
+          .then(() => {
+            this.getFiles();
+            this.filesToSave = [];
+          })
+          .catch((error) => {
+            console.error("error in Post", error);
+          });
+      });
+    },
+    getFiles() {
+      axios
+        .get(this.path)
+        .then((res) => {
+          var fromDataFiles = res.data;
+          if (fromDataFiles) this.files = fromDataFiles;
+        })
+        .catch((error) => {
+          console.error("error in Get" + error);
         });
-      }
     },
   },
   components: {

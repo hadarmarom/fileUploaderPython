@@ -55,16 +55,20 @@
         }
         li {
             display: flex;
-            // align-items: center;
             margin: auto;
             border: 1px red solid;
             border-bottom: none;
             margin-bottom: 0;
+            .file-preview:hover {
+                background-color: #e6a0a0;
+                cursor: pointer;
+                color: white;
+            }
             h4 {
                 margin-bottom: 0;
                 padding-bottom: 0;
             }
-            img{
+            img {
                 height: 200px;
             }
             &:last-child {

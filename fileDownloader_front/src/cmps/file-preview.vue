@@ -1,5 +1,5 @@
 <template>
-  <div class="hello" @click.prevent="downloadItem(file)">
+  <div class="file-preview" @click.prevent="downloadItem(file)">
     {{ file.name }}
     <!-- <img :src="file.fileSrc" alt="File Image"> -->
   </div>
